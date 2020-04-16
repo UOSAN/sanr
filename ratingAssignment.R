@@ -10,8 +10,8 @@
 # output: 
 # The output is a list of 3 data frame: 
 # goal_record shows the names of raters assigned to each goal 
-# rater_record shows all the goals assigend to each rater
-# sum_record shows the total number of goals being assigend, and the total number of goals assigned to each rater
+# rater_record shows all the goals assigned to each rater
+# sum_record shows the total number of goals being assigned, and the total number of goals assigned to each rater
 
 ratingAssignment <- function(items, raters, pair_size){
   
@@ -43,7 +43,7 @@ ratingAssignment <- function(items, raters, pair_size){
   # total number of non empty items
   total_items <- length(items)
   
-  # modify the length of the items so that it can be devided by the number of pairs. The additional items will be NAs. 
+  # modify the length of the items so that it can be divided by the number of pairs. The additional items will be NAs.
   length(items) <- prod(dim(matrix(items, nrow = pairNum)))
   
   # assign items across all pairs and transform the result into a dataframe 
