@@ -13,7 +13,7 @@
 # rater_record shows all the goals assigned to each rater
 # sum_record shows the total number of goals being assigned, and the total number of goals assigned to each rater
 
-ratingAssignment <- function(items, raters, pair_size) {
+rating_assignment <- function(items, raters, pair_size) {
   # extract the total number of raters
   raNum <- length(raters)
   
