@@ -17,13 +17,13 @@ ratingAssignment <- function(items, raters, pair_size){
   
   
   # extract the total number of raters
-  raNum <- length(raNames)
+  raNum <- length(raters)
   
   # randomize the order of rater names
-  raNames <- sample(raNames)
+  raters <- sample(raters)
   
   # generate all pairs of combination
-  raPairs <- combn(raNames, pair_size)
+  raPairs <- combn(raters, pair_size)
   
   # transpose the matrix
   raPairs <- t(raPairs)
@@ -64,11 +64,11 @@ ratingAssignment <- function(items, raters, pair_size){
   
   # initialize an empty dataframe where each rater is represented by a column
   raDf <- data.frame(matrix(nrow = rowMax, ncol = raNum))
-  colnames(raDf) <- raNames
+  colnames(raDf) <- raters
   
   # loop through each rater and extract the goals assigned to the rater pairs that this rater belongs 
-  for (raIdx in 1:length(raNames)){
-    ra <- raNames[raIdx]
+  for (raIdx in 1:length(raters)){
+    ra <- raters[raIdx]
     pairIdx <- which(raPairs == ra, arr.ind = T)[,1] # see which pair includes this rater
     item <- itemMatrix[pairIdx,] # extract the goals from these pairs
     raItems <- as.vector(as.matrix(item)) # vectorize the goals 
