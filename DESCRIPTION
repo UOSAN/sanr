@@ -13,3 +13,4 @@ Imports:
     tidyr,
     dplyr,
     magrittr
+RoxygenNote: 7.0.2

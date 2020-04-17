@@ -1,17 +1,12 @@
-# This is a function for randomly assigning items to raters
-
-# required library: tidyverse
-
-# required input:
-# items: a vector of items that need to be rated
-# raters: a vector of raters' names or IDs
-# pair_size: the number of raters assigned for a given item
-
-# output:
-# The output is a list of 3 data frame:
-# goal_record shows the names of raters assigned to each goal
-# rater_record shows all the goals assigned to each rater
-# sum_record shows the total number of goals being assigned, and the total number of goals assigned to each rater
+#' Randomly assign items to raters, so that each item is assigned to pair_size raters
+#'
+#' @param items A vector of items that need to be rated
+#' @param raters A vector of rater identifiers
+#' @param pair_size The number of raters that must rate each item
+#' @return A list of 3 data frames. goal_record shows the names of raters
+#'   assigned to each goal. rater_record shows all the goals assigned to each
+#'   rater. sum_record shows a summary including the total number of goals being
+#'   assigned, and the total number of goals assigned to each rater.
 
 rating_assignment <- function(items, raters, pair_size) {
   # extract the total number of raters
