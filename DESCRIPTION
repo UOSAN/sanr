@@ -1,0 +1,16 @@
+Package: sanr
+Title: SAN Lab Utility Functions
+Version: 0.0.0.9000
+Authors@R: as.person(c(
+    "Paul Novak <pnovak2@uoregon.edu> [cre,aut]",
+    "Bernice Cheung <bernice.fxx@gmail.com> [aut]"
+  ))
+Description: A collection of utility functions developed by the SAN Lab
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    tidyr,
+    dplyr,
+    magrittr
+RoxygenNote: 7.0.2

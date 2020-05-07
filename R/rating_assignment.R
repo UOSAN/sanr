@@ -1,19 +1,15 @@
-# This is a function for randomly assigning items to raters
-
-# required library: tidyverse
-
-# required input:
-# items: a vector of items that need to be rated
-# raters: a vector of raters' names or IDs
-# pair_size: the number of raters assigned for a given item
-
-# output:
-# The output is a list of 3 data frame:
-# goal_record shows the names of raters assigned to each goal
-# rater_record shows all the goals assigned to each rater
-# sum_record shows the total number of goals being assigned, and the total number of goals assigned to each rater
-
-ratingAssignment <- function(items, raters, pair_size) {
+#' Randomly assign items to raters, so that each item is assigned to pair_size raters
+#'
+#' @param items A vector of items that need to be rated
+#' @param raters A vector of rater identifiers
+#' @param pair_size The number of raters that must rate each item
+#' @return A list of 3 data frames. goal_record shows the names of raters
+#'   assigned to each goal. rater_record shows all the goals assigned to each
+#'   rater. sum_record shows a summary including the total number of goals being
+#'   assigned, and the total number of goals assigned to each rater.
+#' @export
+#' @importFrom magrittr %>%
+rating_assignment <- function(items, raters, pair_size) {
   # extract the total number of raters
   raNum <- length(raters)
   
@@ -53,9 +49,9 @@ ratingAssignment <- function(items, raters, pair_size) {
   
   # transform the dataframe into a long format
   assignDf <- assignDf %>%
-    gather(key = order, value = items, starts_with("V")) %>%
-    select(-order) %>%
-    filter(!is.na(items))
+    tidyr::gather(key = order, value = items, starts_with("V")) %>%
+    dplyr::select(-order) %>%
+    stats::filter(!is.na(items))
   
   # calculate the maximum number of items assigned for each RA
   rowMax <- length(items) * (pair_size / raNum)
@@ -81,7 +77,7 @@ ratingAssignment <- function(items, raters, pair_size) {
   # generate a dataframe for logging the summary
   log <- data.frame(date = as.character(Sys.Date()),
                     total_items = total_items)
-  log <- cbind(log, bind_rows(assign_sum))
+  log <- cbind(log, dplyr::bind_rows(assign_sum))
   
   # generate a list to store all output dataframes
   out <- list()

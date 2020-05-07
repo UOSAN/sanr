@@ -1,1 +1,1 @@
-# customized_R_function-
+# sanr - A collection of utility functions developed by the SAN lab
