@@ -49,7 +49,7 @@ rating_assignment <- function(items, raters, pair_size) {
   
   # transform the dataframe into a long format
   assignDf <- assignDf %>%
-    tidyr::gather(key = order, value = items, starts_with("V")) %>%
+    tidyr::gather(key = order, value = items, tidyselect::starts_with("V")) %>%
     dplyr::select(-order) %>%
     stats::filter(!is.na(items))
   
