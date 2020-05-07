@@ -7,7 +7,8 @@
 #'   assigned to each goal. rater_record shows all the goals assigned to each
 #'   rater. sum_record shows a summary including the total number of goals being
 #'   assigned, and the total number of goals assigned to each rater.
-
+#' @export
+#' @importFrom magrittr %>%
 rating_assignment <- function(items, raters, pair_size) {
   # extract the total number of raters
   raNum <- length(raters)
@@ -48,9 +49,9 @@ rating_assignment <- function(items, raters, pair_size) {
   
   # transform the dataframe into a long format
   assignDf <- assignDf %>%
-    gather(key = order, value = items, starts_with("V")) %>%
-    select(-order) %>%
-    filter(!is.na(items))
+    tidyr::gather(key = order, value = items, starts_with("V")) %>%
+    dplyr::select(-order) %>%
+    stats::filter(!is.na(items))
   
   # calculate the maximum number of items assigned for each RA
   rowMax <- length(items) * (pair_size / raNum)
@@ -76,7 +77,7 @@ rating_assignment <- function(items, raters, pair_size) {
   # generate a dataframe for logging the summary
   log <- data.frame(date = as.character(Sys.Date()),
                     total_items = total_items)
-  log <- cbind(log, bind_rows(assign_sum))
+  log <- cbind(log, dplyr::bind_rows(assign_sum))
   
   # generate a list to store all output dataframes
   out <- list()
