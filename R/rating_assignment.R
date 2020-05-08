@@ -27,7 +27,7 @@ rating_assignment <- function(items, raters, pair_size) {
   raters <- sample(raters)
   
   # generate all pairs of combination
-  raPairs <- combn(raters, pair_size)
+  raPairs <- utils::combn(raters, pair_size)
   
   # transpose the matrix
   raPairs <- t(raPairs)
