@@ -10,6 +10,16 @@
 #' @export
 #' @importFrom magrittr %>%
 rating_assignment <- function(items, raters, pair_size) {
+  # Perform input validation
+  if (!is.vector(items))
+    stop("Error: 'items' must be vector")
+  if (!is.vector(raters))
+    stop("Error: 'raters' must be vector")
+  if (length(raters) < 2)
+    stop("Error: 'raters' must have more than 2 elements")
+  if (pair_size == 0 || pair_size == 1 || pair_size > length(raters))
+    stop("Error: 'pair_size' must be less than length of 'raters'")
+
   # extract the total number of raters
   raNum <- length(raters)
   
