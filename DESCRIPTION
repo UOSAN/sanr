@@ -13,7 +13,8 @@ Imports:
     tidyr,
     dplyr,
     magrittr,
-    tidyselect
+    tidyselect,
+    utils
 RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0)
